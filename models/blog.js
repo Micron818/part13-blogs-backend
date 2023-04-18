@@ -25,12 +25,32 @@ Blog.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    year: {
+      type: DataTypes.INTEGER,
+      // validate: {
+      //   min: {
+      //     args: 1991,
+      //     msg: `the value less 1991, Validation min on year failed`,
+      //   },
+      //   max: new Date().getFullYear(),
+      // },
+    },
   },
   {
     sequelize,
     underscored: true,
     timestamps: false,
     modelName: 'blog',
+    validate: {
+      yearBetween() {
+        const currentYear = new Date().getFullYear()
+        if (this.year < 1991 || this.year > currentYear) {
+          throw new Error(
+            `the request year ${this.year} is valid, must between 1991 and ${currentYear}!`
+          )
+        }
+      },
+    },
   }
 )
 

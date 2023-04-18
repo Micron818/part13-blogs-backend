@@ -5,6 +5,7 @@ const blogsRouter = require('./controls/blogs')
 const authorsRouter = require('./controls/authors')
 const usersRouter = require('./controls/users')
 const loginRouter = require('./controls/login')
+const readinglistsRouter = require('./controls/readinglists')
 const { connectToDatabase } = require('./util/db')
 const { errorHandler } = require('./util/middleware')
 
@@ -16,6 +17,7 @@ app.use('/api/blogs', blogsRouter)
 app.use('/api/authors', authorsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/readinglists', readinglistsRouter)
 
 app.use(errorHandler)
 
